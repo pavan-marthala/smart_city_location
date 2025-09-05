@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: village-table-001
+      author: pavan
+      changes:
+        - createTable:
+            tableName: village
+            columns:
+              - column:
+                  name: id
+                  type: CHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                    name: city_id
+                    type: CHAR(36)
+                    constraints:
+                        nullable: true
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: etag
+                  type: BIGINT
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: village
+            baseColumnNames: city_id
+            constraintName: fk_village_city
+            referencedTableName: city
+            referencedColumnNames: id
+            onDelete: CASCADE

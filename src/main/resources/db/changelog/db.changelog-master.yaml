@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/create-city-table.yml
+  - include:
+      file: db/changelog/changes/create-village-table.yml
+
